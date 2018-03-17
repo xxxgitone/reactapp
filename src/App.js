@@ -1,21 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {createStore} from 'redux';
+import React, { Component } from 'react'
+import { Button } from 'antd-mobile'
+import { connect } from 'react-redux'
+import { addCount, minsCount, addCountAsync } from './redux'
 
+const mapStateToProps = (state) => {
+  return {
+    count: state
+  }
+}
+
+const mapDispatchToProps = {
+  addCount,
+  minsCount,
+  addCountAsync
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class App extends Component {
-  render() {
+  render () {
+    const { 
+      count,
+      addCount,
+      minsCount,
+      addCountAsync
+    }  = this.props
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <h2>{count}</h2>
+        <Button type="primary" onClick={addCount}>+</Button>
+        <Button type="primary" onClick={minsCount}>-</Button>
+        <Button type="primary" onClick={addCountAsync}>异步+</Button>        
       </div>
-    );
+    )
   }
 }
 
