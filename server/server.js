@@ -1,9 +1,12 @@
 const express = require('express')
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://127.0.0.1:27017')
-mongoose.connection.on('connected', () => console.log('mongo connects uccess'))
-
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const userRouter = require('./user')
 const app = express()
+
+app.use(cookieParser())
+app.use(bodyParser.json())
+app.use('/user', userRouter)
 
 app.listen(9000, () => {
   console.log('Node app start at port 9000')
