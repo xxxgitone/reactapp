@@ -3,8 +3,14 @@ import axios from 'axios'
 // 默认情况下只有Route的组件才有history下面的路由信息
 // 使用 `withRouter`可以提供history路由信息
 import { withRouter } from 'react-router-dom'
+import { loadData } from '../../redux/user'
+import { connect } from 'react-redux'
 
 @withRouter
+@connect(
+  null,
+  {loadData}
+)
 class AuthRoute extends Component {
   componentDidMount () {
     const publicList = ['/login', '/register']
@@ -16,6 +22,7 @@ class AuthRoute extends Component {
     axios.get('/user/info').then(res => {
       if (res.data.code === 0) {
         // 有登录信息
+        this.props.loadData(res.data.data)
       } else {
         this.props.history.push('/login')
       }
