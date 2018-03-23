@@ -9,11 +9,12 @@ import {
 // 处理异步
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import AuthRoute from './component/authRoute/authRoute'
 import Login from './container/login/login'
 import Register from './container/register/register'
+import BossInfo from './container/bossinfo/bossinfo'
 import reducers from './reducer'
 import './config'
 import './index.css'
@@ -32,8 +33,11 @@ ReactDOM.render(
       <BrowserRouter>
         <div>
           <AuthRoute></AuthRoute>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/register" component={Register}></Route> 
+          <Switch>
+            <Route path="/bossinfo" component={BossInfo}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/register" component={Register}></Route>
+          </Switch>
         </div>
       </BrowserRouter>
     </Provider>
