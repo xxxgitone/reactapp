@@ -5,8 +5,13 @@ const model = require('./model')
 const User = model.getModel('user')
 
 router.get('/list', (req, res) => {
-  User.find({}).then(user => {
-    return res.json(user)
+  const { type } = req.query
+
+  User.find({type}).then(user => {
+    return res.json({
+      code: 0,
+      data: user
+    })
   })
 })
 
@@ -44,6 +49,25 @@ router.post('/register', (req, res) => {
       })
     })
   })
+})
+
+router.post('/update', (req, res) => {
+  const userid = req.cookies.userid
+  if (!userid) {
+    return res.json({code: 1})
+  }
+  const body = req.body
+  User.findByIdAndUpdate(userid, body)
+    .then(user => {
+      const data = Object.assign({}, {
+        user: user.user,
+        type: user.type
+      }, body)
+      return res.json({
+        code: 0,
+        data
+      })
+    })
 })
 
 router.post('/login', (req, res) => {
