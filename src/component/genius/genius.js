@@ -7,10 +7,10 @@ import UserCard from '../../component/usercard/usercard'
   state => state.chatUser,
   { getUserList }
 )
-class Boss extends Component {
+class Genius extends Component {
 
   componentDidMount () {
-    this.props.getUserList('genius')
+    this.props.getUserList('boss')
   }
 
   render () {
@@ -20,4 +20,4 @@ class Boss extends Component {
   }
 }
 
-export default Boss
+export default Genius
