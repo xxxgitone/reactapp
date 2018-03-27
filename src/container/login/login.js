@@ -11,6 +11,29 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login } from '../../redux/user'
 
+// class Hello extends Component {
+//   render () {
+//     return <h2>hello</h2>
+//   }
+// }
+
+// function WrapperHello (Comp) {
+//   class WrapCmp extends Component {
+//     render () {
+//       return (
+//         <div>
+//           <p>这是高阶组件</p>
+//           <Comp {...this.props}></Comp>
+//         </div>
+//       )
+//     }
+//   }
+
+//   return WrapCmp
+// }
+
+// Hello = WrapperHello(Hello)
+
 @connect(
   state => state.user,
   {login}
@@ -44,7 +67,7 @@ class Login extends Component {
   render () {
     return (
       <div>
-        { this.props.redirectTo 
+        { this.props.redirectTo && this.props.redirectTo !== '/login'
             ? <Redirect to={this.props.redirectTo}></Redirect>
             : null
         }
