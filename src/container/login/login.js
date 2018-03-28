@@ -10,6 +10,7 @@ import {
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login } from '../../redux/user'
+import iForm from '../../component/iForm/iForm'
 
 // class Hello extends Component {
 //   render () {
@@ -38,13 +39,14 @@ import { login } from '../../redux/user'
   state => state.user,
   {login}
 )
+@iForm
 class Login extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      user: '',
-      pwd: ''
-    }
+    // this.state = {
+    //   user: '',
+    //   pwd: ''
+    // }
 
     this.register = this.register.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
@@ -54,14 +56,14 @@ class Login extends Component {
     this.props.history.push('/register')
   }
 
-  handleChange (key, val) {
-    this.setState({
-      [key]: val
-    })
-  }
+  // handleChange (key, val) {
+  //   this.setState({
+  //     [key]: val
+  //   })
+  // }
 
   handleLogin () {
-    this.props.login(this.state)
+    this.props.login(this.props.state)
   }
 
   render () {
@@ -78,9 +80,9 @@ class Login extends Component {
                 ? <p className="error-msg">{this.props.msg}</p> 
                 : null 
             }
-            <InputItem onChange={v => this.handleChange('user', v)}>用户</InputItem>
+            <InputItem onChange={v => this.props.handleChange('user', v)}>用户</InputItem>
             <WhiteSpace/>
-            <InputItem onChange={v => this.handleChange('pwd', v)} type="password">密码</InputItem>    
+            <InputItem onChange={v => this.props.handleChange('pwd', v)} type="password">密码</InputItem>    
           </List>
           <WhiteSpace/>
           <Button type="primary" onClick={this.handleLogin}>登录</Button>
