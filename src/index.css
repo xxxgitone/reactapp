@@ -14,8 +14,26 @@
   position: fixed;
   top: 0;
   width: 100%;
+  /* z-index: 999; */
 }
 
 .page-content {
   padding: 45px 5px;
+}
+
+#chat-page .chat-me .am-list-extra {
+  flex-basis: auto;
+}
+
+#chat-page .chat-me .am-list-content {
+  padding-right: 15px;
+  text-align: right;
+}
+
+.stick-footer {
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
