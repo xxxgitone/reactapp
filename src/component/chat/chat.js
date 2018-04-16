@@ -21,8 +21,8 @@ class Chat extends Component {
   }
 
   componentDidMount () {
-    this.props.getMsgList()
-    this.props.recvMsg()
+    // this.props.getMsgList()
+    // this.props.recvMsg()
   }
 
   handleSubmit () {

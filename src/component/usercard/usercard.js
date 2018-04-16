@@ -8,7 +8,6 @@ class UserCard extends Component {
 
   constructor () {
     super()
-    this.handleClick = this.handleClick.bind(this)
   }
 
   static propTypes = {
@@ -26,7 +25,7 @@ class UserCard extends Component {
         {
           this.props.userList.map(v => (
             v.avatar 
-              ? (<Card key={v._id} onClick={this.handleClick(v)}>
+              ? (<Card key={v._id} onClick={() => this.handleClick(v)}>
                   <Card.Header
                     title={v.user}
                     thumb={require(`../img/${v.avatar}.png`)}
