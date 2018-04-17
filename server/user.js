@@ -53,15 +53,25 @@ router.post('/register', (req, res) => {
 })
 
 router.get('/getmsglist', (req, res) => {
-  const user = req.cookies.user
-  // {'$or': [{from: user, to: user}]}
-  Chat.find({})
-    .then(msgs => {
-      return res.json({
-        code: 0,
-        msgs
-      })
+  const user = req.cookies.userid
+  User.find({}).then(userDoc => {
+    let users = {}
+    userDoc.forEach(user => {
+      users[user._id] = {
+        name: user.user,
+        avatar: user.avatar
+      }
     })
+    // 查询当前用户发出，和发送给当前用户的
+    Chat.find({'$or': [{from: user},{to: user}]})
+      .then(msgs => {
+        return res.json({
+          code: 0,
+          users: users,
+          msgs
+        })
+      })
+  })
 })
 
 router.post('/update', (req, res) => {
