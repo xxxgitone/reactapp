@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { createStore } from './mini-redux'
+import { createStore, applyMiddleware } from './mini-redux'
 import { Provider } from './mini-react-redux'
-// import thunk from 'redux-thunk'
-
+import thunk from './mini-redux-thunk'
+import arrayThunk from './min-redux-arr'
 // context
 // import ContextPage from './context-demo'
 // ReactDOM.render(
@@ -15,7 +15,7 @@ import { Provider } from './mini-react-redux'
 
 import { counter } from './app-redux'
 
-const store = createStore(counter)
+const store = createStore(counter, applyMiddleware(thunk, arrayThunk))
 
 // const store = createStore(reducers, compose(
 //   applyMiddleware(thunk),

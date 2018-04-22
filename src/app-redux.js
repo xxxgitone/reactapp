@@ -20,6 +20,11 @@ export function minCount () {
   return {type: MIN_COUNT}
 }
 
+// 默认不支持数组，有自定义中间件支持
+export function addTwo () {
+  return [{type: ADD_COUNT}, {type: ADD_COUNT}]
+}
+
 export function asyncAdd () {
   return dispatch => {
     setTimeout(() => {

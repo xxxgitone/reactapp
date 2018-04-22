@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { addCount, minCount, asyncAdd } from './app-redux'
+import { connect } from './mini-react-redux'
+import { addCount, minCount, asyncAdd, addTwo } from './app-redux'
 
 const mapStateToProps = (state) => {
   return {
@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
 const mapDispatchProps = {
   addCount,
   minCount,
-  asyncAdd
+  asyncAdd,
+  addTwo
 }
 @connect(mapStateToProps, mapDispatchProps)
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
         <button onClick={this.props.addCount}>+</button>
         <button onClick={this.props.minCount}>-</button>
         <button onClick={this.props.asyncAdd}>异步+</button>
+        <button onClick={this.props.addTwo}>+2</button>
       </div>
     )
   }
